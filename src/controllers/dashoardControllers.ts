@@ -41,10 +41,20 @@ export const getDashboardMatrics = async (
         },
       }
     );
-    const expenseBYCategory = await expenseBYCategorySummaryRaw.map((item) => ({
-      ...item,
-      amount: item.amount.toString(),
-    }));
+    const expenseBYCategorySummary = await expenseBYCategorySummaryRaw.map(
+      (item) => ({
+        ...item,
+        amount: item.amount.toString(),
+      })
+    );
+
+    res.json({
+      popularProducts,
+      salesSummary,
+      expenseSummary,
+      purchaseSummary,
+      expenseBYCategorySummary,
+    });
   } catch (err) {
     res.status(500).json({
       message: "Internal Server Error",
