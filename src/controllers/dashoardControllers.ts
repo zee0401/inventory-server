@@ -8,7 +8,7 @@ export const getDashboardMatrics = async (
   res: Response
 ): Promise<void> => {
   try {
-    const popularProducts = await prisma.product.findMany({
+    const popularProducts = await prisma.products.findMany({
       take: 15,
       orderBy: {
         stockQuantity: "desc",
@@ -33,7 +33,7 @@ export const getDashboardMatrics = async (
         date: "desc",
       },
     });
-    const expenseBYCategorySummaryRaw = await prisma.expenseSummaryRaw.findMany(
+    const expenseBYCategorySummaryRaw = await prisma.expenseByCategory.findMany(
       {
         take: 5,
         orderBy: {
